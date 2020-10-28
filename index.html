@@ -355,31 +355,16 @@
 
       
         
-          
-            <h4 id="SSM框架简介"><a href="#SSM框架简介" class="headerlink" title="SSM框架简介"></a>SSM框架简介</h4><p>SSM框架就是：Spring + Spring MVC + MyBatis</p>
+          <h4 id="SSM框架简介"><a href="#SSM框架简介" class="headerlink" title="SSM框架简介"></a>SSM框架简介</h4><p>SSM框架就是：Spring + Spring MVC + MyBatis</p>
 <p>这样的回答等于没说吧，说个新手能懂的:</p>
 <h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p>看到这个，很多人会和你说什么控制反转（IoC），依赖注入（DI）、AOP、事务什么……对新手来说，这些是什么鬼呢？</p>
-<h3 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h3><p>我不写定义，就说一下你的电脑。你的电脑上有usb口吧，有hdmi口吧。电脑上用什么键盘，不取决于电脑本身，而是插在usb上的键盘是什么？这个能理解吧。你看控制电脑用什么输入的设备并不是由电脑控制的，而是你插入的键盘是什么来控制的。这个控制不就反了吗？</p>
-<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p>就是控制反转。电脑的输入设备依赖它被插入的是什么键盘。插入机械键盘，输入设备就是机械键盘，插入数字键盘就只能输入数字。从插键盘这个事来说：无非是从电脑角度看，是依赖注入，输入设备是什么依赖注入的键盘是什么；从键盘角度看是控制反转，插入的键盘来控制电脑是什么输入设备。</p>
-<p>为什么要用依赖注入？目的就是可以灵活搭配。如果你的电脑上的键盘是焊死在电脑上的，键盘坏了，你的电脑也废了。你肯定不想这样吧。</p>
-<p>Java开发中，我们需要创建大量的对象，有些重要的对象牵一发而动全身，这样的对象我们可以交给Spring帮我们来创建，我们只需要提供配置文件，这个配置文件可以是xml，也可以是java本身。好比Spring是个工厂，按图纸就可以做出产品。</p>
-<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>什么是切面？你可以这样想：一个公司有多个销售部，都需要行政帮忙搞定日常的订文具、机票、办公室、出差酒店什么的，都需要财务搞定报销、收付款什么的事务吧，要仓库帮忙发货什么的。不可能每个销售部都去招几个行政、财务和仓管什么吧，销售部门只要做好业务就行了，订文具什么的事情交个专门的部门去办就行。</p>
-<p>在Spring AOP 中，把这些公共的事务，也就是这个例子中的行政啊、财务啊、仓管啊，看成一个个切面，让你的开发的时候，专注于核心业务。</p>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>说个例子：比如我支付宝转给你100块钱，正常操作应该是我的账号里少了100，你的多了100。如果由于各种原因，我少100后，系统出问题了。没有事务的话，你的账号不会多100，而我的账号少了100。这个就是有问题了。有事务的话：要不我少100你多100都成功，要不就都不成功，这样钱才不会少。而手写一个事务还是有点小难度的，Spring的事务(spring-tx)可以帮我们轻松实现。</p>
-<h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h2><p>这个的话，你要先理解一下MVC是什么？</p>
-<p>C - Controller：控制器。接受用户请求，调用 Model 处理，然后选择合适的View给客户。</p>
-<p>M - Model：模型。业务处理模型，接受Controller的调遣，处理业务，处理数据。</p>
-<p>V - View：视图。返回给客户看的结果。注意这里的客户未必是人，可能是浏览器，可能是APP。</p>
-<p>这样想必你不明白，举例：你去饭店吃饭，坐下来后，服务员小妹来找你点菜。你点了个宫保鸡丁，小妹就拿着你的点菜单都后厨。后厨的师傅打开食物储藏柜，找到鸡丁，开炉子，放油，一顿爆炒，装盘。小妹端起盘子回到你的桌子。当然，如果小妹觉得你帅，说不定还会偷偷加个鸡腿给你；如果你碰巧是当年甩了小妹的前男友，说不定小妹会吐口口水在里面。</p>
-<p>这里，你就是客户，你点菜就是发出请求（Request），小妹就是Controller，后厨就是 Model，小妹最后给的盘子及里面的内容就是View，小妹给你盘子就是响应（Respond）。Controller处理客户请求，反馈给Model。Model处理，返回数据（宫保鸡丁）给Controller（小妹）。小妹可以直接给你，也可以给你加鸡腿或吐口水后给你。最终，你得到了一盘吃的（View）。</p>
-<p>Spring MVC就是个MVC框架，和Spring天生就集成。</p>
-<h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><p>一个帮你和数据库打交道的框架。帮你把数据库的表翻译成类，字段翻译成类的字段，记录翻译成对象。（当然这些全要靠你自己定义。）</p>
-<p>这样做的后果就是，你可以像写java一样操作数据库了。什么打开JDBC，防止sql注入，不用考虑，MyBatis帮你搞定。</p>
-<p>Spring中，通过简单的设置就可以集成MyBatis这个框架，所以会有SSM框架的说法。</p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>如果我们把 SSM + 另外一些功能的框架看成一台台式电脑，主机上插了键盘、鼠标、显示器、优盘、音响……那么 Spring 框架好像是电脑的主机，Spring MVC类似于显示器（Web交互很漂亮，对不对），MyBatis好比是个硬盘（移动硬盘、优盘），其他的功能框架如安全框架 Shiro 好比是个指纹登录器。这些东西是不是都是插主机上的？</p>
-<p>哈哈这个是初步认识吧</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/uncategorized/2020/10/28/SSM%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -496,19 +481,14 @@
 
       
         
-          
-            <p>UserInfo 记录用户的基本信息<br>    User_Name 用户名（唯一） int<br>    User_Pwd 用户密码  nvarchar<br>    User_nickname 用户昵称 nvarchar<br>    User_headpicurl 用户头像地址 nvarchar<br>    User_allmarks 用户论坛的总积分 int<br>   User_roleid 用户角色 int</p>
-<p>BigBoard 论坛的父版块信息<br>   BiBo_id  父版块的id   int<br>   BiBo_title 父版块的名称  nvarchar<br>   BiBo_admin  父版块的斑竹（多个用‘|’隔开） nvarchar</p>
-<p>SmallBoard 论坛的子版块信息<br>   SmBo_id 子版块的id  int<br>   SmBo_title 子版块的名称  nvarchar<br>   SmBo_admin  子版块的斑竹（多个用‘|’隔开） nvarchar<br>   SmBo_BiBoid  子版块所属的父版块id  int</p>
-<p>Posts 发的帖子信息<br>   Post_id 帖子的id  int<br>   Post_Title 帖子的标题 nvarchar<br>   Post_BiBoid 帖子所属父版块id  int<br>   Post_SmBoid 帖子所属子版块id int<br>   Post_admin 发帖者姓名 nvarchar<br>   Post_createtime 发帖时间 datetime<br>   Post_updatetime   更新时间 datetime<br>   Post_content 帖子内容 nvarchar<br>   Post_goodcount 帖子的好评数 int<br>   Post_badcount 帖子的坏评数 int<br>   Post_reward 帖子的总共悬赏分（吸引浏览） int<br>   Post_score 帖子悬赏分所剩下的分数 int<br>   Post_ispay 是否结贴 bit<br>   Post_islocked 是否帖子被锁定 bit</p>
-<p>Reply 回复信息表<br>   Reply_admin 回复者姓名  nvarchar<br>   Reply_postid 回复的帖子id int<br>   Reply_smboid 回复的帖子所属子版块的id  int<br>   Reply_biboid 回复的帖子所属父版块的id  int<br>   Reply_content 回复帖子的内容 nvarchar<br>   Reply_createtime 回复的时间 datetime<br>   Reply_goodcount 回复的好评数 int<br>   Reply_badcount 回复的坏评数 int<br>   Reply_score 回复所得到的积分（系统给的积分除外） int<br>   Reply_id 回复id  bigint</p>
-<p>PostCommend 帖子推荐类型表(将被推荐的帖子放入插入此表中)<br>   PoCo_id 被推荐的帖子id int<br>   PoCo_commendtype 推荐类型 int<br>   PoCo_commendtime 推荐时间 datetime<br>   PoCo_commendperson 推荐人姓名（一般为管理员或者版主） nvarchar<br>   PoCo_commendreason 推荐理由 nvarchar</p>
-<p>DM_PostCommend 推荐类型的代码表<br>   Comm_type  推荐类型  int<br>   Comm_summary 不同种推荐的简介 nvarchar</p>
-<p>DM_UserRoles 用户角色表<br>   Role_id 角色id  int<br>   Role_name 角色名称（管理员，普通用户，版主等） nvarchar<br>   Role_permission 角色所具有的权限 nvarchar</p>
-<p>DM_Grade  用户级别表<br>   Grade_id 级别id   int<br>    Grade_name 级别的名称（如小学生，初中生，大学生，等） nvarchar<br>   Grade_medalurl 级别的勋章图片链接地址 nvarchar</p>
-<p>ScoreLimit 每天的分数限制（防止刷分）<br>   Score_username 得分用户名  nvarchar<br>   Score_postmark 发帖个数  int<br>   Score_replymark 回帖个数  int<br>   Score_createtime 一天中的第一次得分时间  datetime<br>   Score_updatetime 一天中的其他得分时间（判断两次是不是在同一天，如果是，就将一天的发帖数和回帖数加起来，看是否超出规定，如果超出，之后的操作则不予以加分；如果不是同一天，就将createtime update为当天的第一次得分，就将回帖和发帖置零，总之，一人只有一条记录，如果没有则insert，有则update） datetime</p>
-
-          
+          <p>UserInfo 记录用户的基本信息<br>    User_Name 用户名（唯一） int<br>    User_Pwd 用户密码  nvarchar<br>    User_nickname 用户昵称 nvarchar</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/uncategorized/2020/10/28/%E6%95%B0%E6%8D%AE%E5%BA%93.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -625,47 +605,15 @@
 
       
         
-          
-            <p>在维基百科中关于MVC是这样定说的；</p>
+          <p>在维基百科中关于MVC是这样定说的；</p>
 <p><strong>MVC模式</strong>（Model–view–controller）是<a href="https://zh.wikipedia.org/wiki/软件工程" target="_blank" rel="noopener">软件工程</a>中的一种<a href="https://zh.wikipedia.org/wiki/软件架构" target="_blank" rel="noopener">软件架构</a>模式，把软件系统分为三个基本部分：模型（Model）、视图（View）和控制器（Controller）。</p>
-<p>其中：</p>
-<ul>
-<li>模型（Model） - 程序员编写程序应有的功能（实现算法等等）、数据库专家进行数据管理和数据库设计(可以实现具体的功能)。</li>
-<li>视图（View） - 界面设计人员进行图形界面设计。</li>
-<li>控制器（Controller）- 负责转发请求，对请求进行处理。</li>
-</ul>
-<h3 id="组建的互动"><a href="#组建的互动" class="headerlink" title="组建的互动"></a>组建的互动</h3><p>将应用程序划分为三种组件，模型 - 视图 - 控制器（MVC）设计定义它们之间的相互作用。<a href="https://zh.wikipedia.org/wiki/MVC#cite_note-posa-2" target="_blank" rel="noopener">[2]</a></p>
-<ul>
-<li><p><strong>模型（Model）</strong> 用于封装与应用程序的业务逻辑相关的数据以及对数据的处理方法。“ Model ”有对数据直接访问的权力，例如对数据库的访问。“Model”不依赖“View”和“Controller”，也就是说， Model 不关心它会被如何显示或是如何被操作。但是 Model 中数据的变化一般会通过一种刷新机制被公布。为了实现这种机制，那些用于监视此 Model 的 View 必须事先在此 Model 上注册，从而，View 可以了解在数据 Model 上发生的改变。（比如：<a href="https://zh.wikipedia.org/wiki/观察者模式" target="_blank" rel="noopener">观察者模式</a>（<a href="https://zh.wikipedia.org/wiki/软件设计模式" target="_blank" rel="noopener">软件设计模式</a>））</p>
-</li>
-<li><p><strong>视图（View）</strong>能够实现数据有目的的显示（理论上，这不是必需的）。在 View 中一般没有程序上的逻辑。为了实现 View 上的刷新功能，View 需要访问它监视的数据模型（Model），因此应该事先在被它监视的数据那里注册。</p>
-</li>
-<li><p><strong>控制器（Controller）</strong>起到不同层面间的组织作用，用于控制应用程序的流程。它处理事件并作出响应。“事件”包括用户的行为和数据 Model 上的改变。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>在最初的<a href="https://zh.wikipedia.org/wiki/JSP" target="_blank" rel="noopener">JSP</a>网页中，像<a href="https://zh.wikipedia.org/wiki/数据库" target="_blank" rel="noopener">数据库</a>查询语句(SQL query)这样的数据层代码和像<a href="https://zh.wikipedia.org/wiki/HTML" target="_blank" rel="noopener">HTML</a>这样的表示层代码是混在一起。虽然有着经验比较丰富的开发者会将数据从表示层分离开来，但这样的良好设计通常并不是很容易做到的，实现它需要精心地计划和不断的尝试。MVC可以从根本上强制性地将它们分开。尽管构造MVC应用程序需要一些额外的工作，但是它带给我们的好处是毋庸置疑的。</p>
-<p>首先，多个 View 能共享一个 Model 。如今，同一个Web应用程序会提供多种用户界面，例如用户希望既能够通过浏览器来收发<a href="https://zh.wikipedia.org/wiki/电子邮件" target="_blank" rel="noopener">电子邮件</a>，还希望通过手机来访问<a href="https://zh.wikipedia.org/wiki/电子邮箱" target="_blank" rel="noopener">电子邮箱</a>，这就要求Web网站同时能提供<a href="https://zh.wikipedia.org/wiki/Internet" target="_blank" rel="noopener">Internet</a>界面和<a href="https://zh.wikipedia.org/wiki/WAP" target="_blank" rel="noopener">WAP</a>界面。在MVC设计模式中， Model 响应用户请求并返回响应数据，View 负责格式化数据并把它们呈现给用户，业务逻辑和表示层分离，同一个 Model 可以被不同的 View 重用，所以大大提高了代码的可重用性。</p>
-<p>其次，Controller 是自包含（self-contained,指高独立内聚）的对象，与 Model 和 View 保持相对独立，所以可以方便的改变应用程序的数据层和业务规则。例如，把数据库从<a href="https://zh.wikipedia.org/wiki/MySQL" target="_blank" rel="noopener">MySQL</a>移植到<a href="https://zh.wikipedia.org/wiki/Oracle" target="_blank" rel="noopener">Oracle</a>，或者把<a href="https://zh.wikipedia.org/wiki/RDBMS" target="_blank" rel="noopener">RDBMS</a>数据源改变成<a href="https://zh.wikipedia.org/wiki/LDAP" target="_blank" rel="noopener">LDAP</a>数据源，只需改变 Model 即可。一旦正确地实现了控制器，不管数据来自数据库还是<a href="https://zh.wikipedia.org/wiki/LDAP" target="_blank" rel="noopener">LDAP</a>服务器，View 都会正确地显示它们。由于MVC模式的三个模块相互独立，改变其中一个不会影响其他两个，所以依据这种设计思想能构造良好的少互扰性的构件。</p>
-<p>此外，Controller 提高了应用程序的灵活性和可配置性。Controller 可以用来连接不同的 Model 和 View 去完成用户的需求，也可以构造应用程序提供强有力的手段。给定一些可重用的 Model 、 View 和Controller 可以根据用户的需求选择适当的 Model 进行处理，然后选择适当的的 View 将处理结果显示给用户。</p>
-<h3 id="评价误解及其使用使用范围"><a href="#评价误解及其使用使用范围" class="headerlink" title="评价误解及其使用使用范围"></a>评价误解及其使用使用范围</h3><p>MVC模式在概念上强调 Model, View, Controller 的分离，各个模块也遵循着由 Controller 来处理消息，Model 掌管数据源，View 负责资料显示的职责分离原则，因此在实现上，MVC 模式的 Framework 通常会将 MVC 三个部分分离实现：</p>
-<ul>
-<li>Model 负责资料访问，较现代的 Framework 都会建议使用独立的资料对象 (DTO, POCO, POJO 等) 来替代弱类型的集合对象。资料访问的代码会使用 Data Access 的代码或是 ORM-based Framework，也可以进一步使用 Repository Pattern 与 Unit of Works Pattern 来切割数据源的相依性。</li>
-<li>Controller 负责处理消息，较高端的 Framework 会有一个默认的实现来作为 Controller 的基础，例如 Spring 的 DispatcherServlet 或是 ASP.NET MVC 的 Controller 等，在职责分离原则的基础上，每个 Controller 负责的部分不同，因此会将各个 Controller 切割成不同的文件以利维护。</li>
-<li>View 负责显示资料，这个部分多为前端应用，而 Controller 会有一个机制将处理的结果 (可能是 Model, 集合或是状态等) 交给 View，然后由 View 来决定怎么显示。例如 Spring Framework 使用 JSP 或相应技术，ASP.NET MVC 则使用 Razor 处理资料的显示。</li>
-</ul>
-<p>也因为 MVC 模式强调职责分离，所以在发展 MVC 应用时会产生很多文件，在 IDE (集成开发环境) 不够成熟时它会是个问题，但在现代主流 IDE 都能使用类别对象的信息来组织代码编辑的情况下，多文件早已不是问题，而且 MVC 模式会要求开发者进一步思考应用程序的架构 (Application Architecture)，而非用大杂烩的方式开发应用程序，对于应用程序的生命周期以及后续的可扩展与可维护性而言有相当正面的帮助。另外，MVC 职责分离也带来了一个现代软件工程要求的重要特性：可测试性 (Testability)，MVC-based 的应用程序在良好的职责分离的设计下，各个部分可独立行使<a href="https://zh.wikipedia.org/wiki/单元测试" target="_blank" rel="noopener">单元测试</a>，有利于与企业内的自动化测试、<a href="https://zh.wikipedia.org/wiki/持續整合" target="_blank" rel="noopener">持续集成</a> (Continuous Integration) 与<a href="https://zh.wikipedia.org/w/index.php?title=持續發行&action=edit&redlink=1" target="_blank" rel="noopener">持续发行</a> (Continuous Delivery) 流程集成，减少应用程序改版部署所需的时间。</p>
-<p>MVC 模式的应用程序的目的就是希望打破以往应用程序使用的大杂烩程序撰写方式，并间接诱使开发人员以更高的架构导向思维来思考应用程序的设计，因此对于一个刚入门的初学者来说，架构导向的思考会有一定的门槛，需要较多的实现与练习才能具备相应的能力，大多数的初学者还是较习惯于大杂烩式的程序撰写，所以可能会对 MVC 模式抱持着排斥或厌恶的心态，然而 MVC (或是其他的<a href="https://zh.wikipedia.org/w/index.php?title=Design_Patterns&action=edit&redlink=1" target="_blank" rel="noopener">Design Patterns</a>) 都是有助于应用程序长远的发展，虽然大杂烩式的程序也可以用来发展长生命周期的应用程序，但是相较于 MVC，大杂烩式的程序在可扩展性和可维护性 (尤其是可测试性) 上会远比 MVC 复杂很多，相反的，MVC 模式的应用程序是在初始开发时期必须先思考并使用软件架构，使得开发时期会需要花较多心力，但是一旦应用程序完成后，可扩展性、可维护性和可测试性反而会因为 MVC 的特性而变得容易。</p>
-<p>因此，MVC 模式在已有众多优秀 Framework 的现代，早就已经没有不适合小型应用的问题，小型的应用还是可以由 MVC Framework 的应用来获取 MVC 的优点，同时它也能作为未来小型应用扩展到大型应用时的基础与入门砖。若一开始就想要做大型应用，那么 MVC 模式的职责分离以及要求开发的架构思考会更适合大型应用的开发。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/** 模擬 Model, View, Controller */</span><br><span class="line">var M = &#123;&#125;, V = &#123;&#125;, C = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">/** Model 負責存放資料 */</span><br><span class="line">M.data = &quot;hello world&quot;;</span><br><span class="line"></span><br><span class="line">/** View 負責將資料輸出到螢幕上 */</span><br><span class="line">V.render = (M) =&gt; &#123; alert(M.data); &#125;</span><br><span class="line"></span><br><span class="line">/** Controller 作為一個 M 和 V 的橋樑 */</span><br><span class="line">C.handleOnload = () =&gt; &#123; V.render(M); &#125;</span><br><span class="line"></span><br><span class="line">/** 在網頁讀取的時候呼叫 Controller */</span><br><span class="line">window.onload = C.handleOnload;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/uncategorized/2020/10/28/%E6%B5%85%E8%B0%88MVC.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -782,26 +730,138 @@
 
       
         
-          
-            <h2 id="1-1-具体功能分配"><a href="#1-1-具体功能分配" class="headerlink" title="\1.******1****具体功能分配****"></a><strong><em>\</em>1.*****</strong>*1*<strong>**</strong>*具体功能分配****</h2><p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsjYYCDs.jpg" alt="img"> </p>
-<h1 id="二-任务概述"><a href="#二-任务概述" class="headerlink" title="\二** \任务概述**"></a><strong><em>\</em>二**</strong> <strong><em>\</em>任务概述**</strong></h1><h2 id="2-1-目标"><a href="#2-1-目标" class="headerlink" title="\2******.1** **目标****"></a><strong><em>\</em>2*****</strong>*.1*<strong>* *</strong>*目标****</h2><p>开发本系统意在吸纳游离在众多论坛的学生和老师，功能和需求能使软件吸引到更多的用户，在众多论坛中生存下来。再者，就是要让我们团队在开发本软件过程中，使自己具有开发软件的经历，并且懂得如何获取专业领域的知识的能力。</p>
-<h2 id="2-2-用户的特点"><a href="#2-2-用户的特点" class="headerlink" title="\2******.2** **用户的特点****"></a><strong><em>\</em>2*****</strong>*.2*<strong>* *</strong>*用户的特点****</h2><p>1、最终用户的特点：所有用户在无需培训的情况下,按照软件页面提示即可使用该软件的相关服务和功能。</p>
-<p>2、后台管理和维护人员的教育水平和技术专长：本软件的后台管理和维护人员是我们团队的人员。</p>
-<h2 id="2-3-假定和约束"><a href="#2-3-假定和约束" class="headerlink" title="\2.3 假定和约束**"></a><strong><em>\</em>2.3 假定和约束**</strong></h2><p>假定本软件开发工作的开发期限为3个月,经费限制随情况而定。</p>
-<h1 id="三-功能模块组成"><a href="#三-功能模块组成" class="headerlink" title="\三 功能模块组成**"></a><strong><em>\</em>三 功能模块组成**</strong></h1><h2 id="3-1功能模块设计"><a href="#3-1功能模块设计" class="headerlink" title="\3.1功能模块设计**"></a><strong><em>\</em>3.1功能模块设计**</strong></h2><p>通过对系绕进行详细的需求分析，获得了一个最优的设计方案。将系统划分为若干功能子模块。为了方便后期的设计与编程工作，在划分系统功能模块时尽量注重模块的独立性，努力做到高内聚，低耦合。</p>
-<h3 id="3-1-1用户注册登陆模块"><a href="#3-1-1用户注册登陆模块" class="headerlink" title="\3.1.1用户注册登陆模块**"></a><strong><em>\</em>3.1.1用户注册登陆模块**</strong></h3><p>要完成论坛的各项操作，用户必须登陆论坛系统，如果没有论坛帐户，用户注册是必须的。用户命令如果是退出，则清除用户的状态信息，并返回论坛首页，    如果是登录则使用MYSQL连接数据库，取得用户输入的帐号和密码并查询数据库，将得出的结果和用户输入的信息做比较，验证正确，显示用户已经登陆到系统，错误将返回消息让用户从新输入。</p>
-<p>如果用户想注册帐户，则返回注册页面，用户填写信息后，将检测信息的正确性，如果帐号允许注册，则完成帐号的注册，将信息写入到数据库中，如果帐户已经存在，则返回错误信息，告诉用户帐号存在，请用户重新输入，并完成注册，进程结束。</p>
-<h3 id="3-1-2帐户信息管理模块"><a href="#3-1-2帐户信息管理模块" class="headerlink" title="\3.1.2帐户信息管理模块**"></a><strong><em>\</em>3.1.2帐户信息管理模块**</strong></h3><p>当用户登陆系统后，在个人工具箱中，可以通过点击个人资料修改的链接来进一步完善个人资料（其中帐户名是不允许修改的），以及通过最近发表的话题来查看和修改自己发布的帖。</p>
-<h3 id="3-1-3文章管理模块"><a href="#3-1-3文章管理模块" class="headerlink" title="\3.1.3文章管理模块**"></a><strong><em>\</em>3.1.3文章管理模块**</strong></h3><p>只有登录用户才可以发表、回复帖子以及浏览自己感兴趣的帖子，并且对帖子的字数有限制。用户登陆系统后可以查看其他所有用户发的文章，并可以发布自己的话题，也可响应回复其他用户和自己发表的话题，版主还可以发布版内公告、删除回复帖，以及对于发表不良言论的回帖可以禁止其回帖。用户只要输入想查询的用户名，点击查询按钮，便可以查询出该用户发表的所有帖子以及该用户发表的帖子序号、标题、发帖时间、发帖人等详细信息，方便用户快速的找到自已想要的信息。</p>
-<h3 id="3-1-4公告制度模块"><a href="#3-1-4公告制度模块" class="headerlink" title="\3.1.4公告制度模块**"></a><strong><em>\</em>3.1.4公告制度模块**</strong></h3><p>论坛管理员可以通过后台管理系统发布论坛公告，公告可以选择版面，公告的主题，并可以设置字体的颜色大小等工具，同时可以设置对文章操作的客户积分。例如用户每发篇文章，则增加一定量的积分。</p>
-<h3 id="3-1-5版块管理模块"><a href="#3-1-5版块管理模块" class="headerlink" title="\3.1.5版块管理模块**"></a><strong><em>\</em>3.1.5版块管理模块**</strong></h3><p>论坛管理员可以通过后台管理系统控制论坛的版块，管理员输入正确用户名、密码之后便可以完成下列功能：</p>
-<p>添加分类或版面，版面配置或删除；并可以对已存在的版块设置属性(包括名称，类别，隐藏，属性，默认风格，主题，回复，排序等）</p>
-<h3 id="3-1-6信息管理模块"><a href="#3-1-6信息管理模块" class="headerlink" title="\3.1.6信息管理模块**"></a><strong><em>\</em>3.1.6信息管理模块**</strong></h3><p>信息管理模块主要完成下面的功能:</p>
-<p>社区信息配置；添加管理员；编辑管理员；设定等级；配置权限；重新登录；安全退出；用户等级；管理团队；用户列表；黑名单；用户查询。</p>
-<p>以上的功能完成了整个论坛的配置，用户的管理，管理员的管理都可以通过对应的链接来完成。</p>
-<h1 id="四．总体需求功能框图"><a href="#四．总体需求功能框图" class="headerlink" title="\四．总体需求功能框图**"></a><strong><em>\</em>四．总体需求功能框图**</strong></h1><p> ![image-20201028203450270](/Users/coleqin/Library/Application Support/typora-user-images/image-20201028203450270.png)</p>
+          <h2 id="1-1-具体功能分配"><a href="#1-1-具体功能分配" class="headerlink" title="\1.******1****具体功能分配****"></a><strong><em>\</em>1.*****</strong>*1*<strong>**</strong>*具体功能分配****</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/uncategorized/2019/11/10/BBS%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coleqin.com/uncategorized/2019/11/10/UML.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cole">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avt1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cole'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/uncategorized/2019/11/10/UML.html" itemprop="url">UML</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-10T22:23:55+08:00">
+                2019-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第-1-章-用例图设计建模"><a href="#第-1-章-用例图设计建模" class="headerlink" title="\第 1 章 用例图设计建模**"></a><strong><em>\</em>第 1 章 用例图设计建模**</strong></h1><h2 id="1-1-游客浏览帖子的用例图"><a href="#1-1-游客浏览帖子的用例图" class="headerlink" title="\1******.****1****游客浏览帖子的用例图****"></a><strong><em>\</em>1*****</strong>*.*<strong>**</strong>*1*<strong>**</strong>*游客浏览帖子的用例图****</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/uncategorized/2019/11/10/UML.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -921,165 +981,6 @@
           
             <h4 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h4><p>1.缺少统计功能，（统计板块信息，统计用户的喜爱度）</p>
 <p>2.没有一个良好的奖励惩罚机制</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coleqin.com/uncategorized/2019/11/10/UML.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cole">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avt1.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cole'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/uncategorized/2019/11/10/UML.html" itemprop="url">UML</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-10T22:23:55+08:00">
-                2019-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第-1-章-用例图设计建模"><a href="#第-1-章-用例图设计建模" class="headerlink" title="\第 1 章 用例图设计建模**"></a><strong><em>\</em>第 1 章 用例图设计建模**</strong></h1><h2 id="1-1-游客浏览帖子的用例图"><a href="#1-1-游客浏览帖子的用例图" class="headerlink" title="\1******.****1****游客浏览帖子的用例图****"></a><strong><em>\</em>1*****</strong>*.*<strong>**</strong>*1*<strong>**</strong>*游客浏览帖子的用例图****</h2><p>游客浏览帖子的用例图如图 1.1 所示，对于未登录的游客，只能浏览帖子，没有发帖回复等权限，可以注册成为会员。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsd6uPpq.jpg" alt="img"> </p>
-<p>图1.1游客浏览帖子的用例图</p>
-<h2 id="1-2-管理员用例图"><a href="#1-2-管理员用例图" class="headerlink" title="\1******.****2** **管理员用例图****"></a><strong><em>\</em>1*****</strong>*.*<strong>**</strong>*2*<strong>* *</strong>*管理员用例图****</h2><p>管理员不仅可以做游客和会员的所有操作，还拥有自己的用例，管理员操作后台的用例图如图 1.2 所示。管理员可进行版面管理，如设定权限、删除帖子、置顶帖子等操作， </p>
-<p>管理员可对普通会员进行管理，如封禁账号，解除封禁，设置等级等，还可以设置论坛的界面风格，屏蔽一些关键字，进行日常的维护备份等。 </p>
-<p>系统管理员用例图如下所示：</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsZm8nyv.jpg" alt="img"> </p>
-<p>图 1.2 系统管理员用例图</p>
-<h2 id="1-3-会员用例图"><a href="#1-3-会员用例图" class="headerlink" title="\1******.****3****会员用例图****"></a><strong><em>\</em>1*****</strong>*.*<strong>**</strong>*3*<strong>**</strong>*会员用例图****</h2><p>会员在论坛中的用例图如图 1.3 所示。会员是论坛系统的主要参与者，在会员进行登录后，可进行浏览、发表、编辑、删除、回复帖子，查看个人信息，搜索帖子等一系列的操作。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wps4aUL7S.jpg" alt="img"> </p>
-<p>图 1.3 会员用例图</p>
-<h1 id="第-2-章-顺序图设计建模"><a href="#第-2-章-顺序图设计建模" class="headerlink" title="\第******2** **章 顺序图设计建模****"></a><strong><em>\</em>第*****</strong>*2*<strong>* *</strong>*章 顺序图设计建模****</h1><h2 id="2-1游客注册的顺序图"><a href="#2-1游客注册的顺序图" class="headerlink" title="\2******.1游客注册的顺序图****"></a><strong><em>\</em>2*****</strong>*.1游客注册的顺序图****</h2><p>对于游客，只能进行浏览帖子以及注册操作。用户注册时，系统会要求游客输入相关注册信息并对这些信息是否为合法进行判断，之后返回判断结果。游客确认注册信息后注册模块将向会员信息数据库提交资料，数据库对信息进行保存后会返回注册成功的提示。 </p>
-<p>游客注册的顺序图如图 2.1 所示。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsPd8OSm.jpg" alt="img"> </p>
-<p>图 2.1 游客注册的顺序图</p>
-<h2 id="2-2-论坛管理员管理论坛分类的顺序图"><a href="#2-2-论坛管理员管理论坛分类的顺序图" class="headerlink" title="\2******.****2** **论坛管理员管理论坛分类的顺序图****"></a><strong><em>\</em>2*****</strong>*.*<strong>**</strong>*2*<strong>* *</strong>*论坛管理员管理论坛分类的顺序图****</h2><p>管理员使用自己的账号和密码登录后，将管理员的 ID 保存在系统的缓存中并提交给论坛类别管理模块。 在显示论坛类别管理的页面中， 将显示处理类别的相关信息给管理员，管理员在该页面中进行增删等操作后，提交操作的 ID 给数据库模块处理。数据库模块执行操作后更新结果，并提示更新成功。最后提示处理成功信息给管理员。 </p>
-<p>论坛管理员管理论坛分类的顺序图如图2.2 所示。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsPgBE6K.jpg" alt="img"> </p>
-<p>图 2.2论坛管理员管理论坛分类的顺序图</p>
-<h2 id="2-3-论坛管理员管理会员的顺序图"><a href="#2-3-论坛管理员管理会员的顺序图" class="headerlink" title="\2******.****3** **论坛管理员管理会员的顺序图****"></a><strong><em>\</em>2*****</strong>*.*<strong>**</strong>*3*<strong>* *</strong>*论坛管理员管理会员的顺序图****</h2><p>管理员在提交 ID 给会员管理模块后，可以对会员进行维护（添加、删除或修改）。管理员首先输入自己的账号和密码登录系统，此时会将管理员的 ID 保存在系统缓存中并提交会员管理模块。在操作会员的页面中，管理员会根据需要对每个会员进行增删等操作，并将其信息提交给数据库。数据库会对其进行相应的处理，并更新会员信息，至此管理员管理会员操作成功。 </p>
-<p>论坛管理员管理会员的顺序图如图 2.3 所示。<img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsqw3ywC.jpg" alt="img"></p>
-<p>图2.3 论坛管理员管理会员的顺序图</p>
-<h2 id="2-4-论坛管理员管理帖子的顺序图"><a href="#2-4-论坛管理员管理帖子的顺序图" class="headerlink" title="\2******.****4** **论坛管理员管理帖子的顺序图****"></a><strong><em>\</em>2*****</strong>*.*<strong>**</strong>*4*<strong>* *</strong>*论坛管理员管理帖子的顺序图****</h2><p>管理员在帖子管理模块可以对会员发表的帖子进行维护（删除） ，还可以对帖子进行一些额外的智能操作，比如，置顶帖子、设置精华帖子等。更改完成后，都要经过数据库的处理，并更新数据，才能成功。 </p>
-<p>论坛管理员管理帖子的顺序图如图 2.4 所示。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsJCq2qy.jpg" alt="img"> </p>
-<p>图 2.4论坛管理员管理帖子的顺序图</p>
-<h1 id="第-3-章-类图设计建模"><a href="#第-3-章-类图设计建模" class="headerlink" title="\第******3****章** **类图设计建模****"></a><strong><em>\</em>第*****</strong>*3*<strong>**</strong>*章*<strong>* *</strong>*类图设计建模****</h1><h2 id="3-1-参与的类与类之间的关系"><a href="#3-1-参与的类与类之间的关系" class="headerlink" title="\3******.****1** **参与的类与类之间的关系****"></a><strong><em>\</em>3*****</strong>*.*<strong>**</strong>*1*<strong>* *</strong>*参与的类与类之间的关系****</h2><p>详细图参考图3.1。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsg3NDmW.jpg" alt="img"> </p>
-<p>图3.1 类图及其关系</p>
-<h1 id="第-4-章-协作图-设计建模"><a href="#第-4-章-协作图-设计建模" class="headerlink" title="\第******4****章** **协作图****设计建模****"></a><strong><em>\</em>第*****</strong>*4*<strong>**</strong>*章*<strong>* *</strong>*协作图*<strong>**</strong>*设计建模****</h1><h2 id="4-1-游客浏览帖子的协作图"><a href="#4-1-游客浏览帖子的协作图" class="headerlink" title="\4******.****1 游客浏览帖子的协作图****"></a><strong><em>\</em>4*****</strong>*.*<strong>**</strong>*1 游客浏览帖子的协作图****</h2><p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsh7ZDsw.jpg" alt="img"> </p>
-<p>图4.1浏览帖子协作图</p>
-<h2 id="4-2-游客注册会员的协作图"><a href="#4-2-游客注册会员的协作图" class="headerlink" title="\4******.2 游客注册会员的协作图****"></a><strong><em>\</em>4*****</strong>*.2 游客注册会员的协作图****</h2><p>游客注册会员的协作图如图 4.2 所示。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wps4i4hRX.jpg" alt="img"> </p>
-<p>图4.2注册会员协作图</p>
-<h2 id="4-3-会员发帖回帖的协作图"><a href="#4-3-会员发帖回帖的协作图" class="headerlink" title="\4******.****3 会员发帖回帖的协作图****"></a><strong><em>\</em>4*****</strong>*.*<strong>**</strong>*3 会员发帖回帖的协作图****</h2><p>会员发帖回帖的协作图如图 4.3所示。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wpsaj3506.jpg" alt="img"> </p>
-<p>图4.3 发帖回帖协作图</p>
-<h2 id="4-4-管理员管理会员的协作图"><a href="#4-4-管理员管理会员的协作图" class="headerlink" title="\4******.****4** **管理员管理会员的协作图****"></a><strong><em>\</em>4*****</strong>*.*<strong>**</strong>*4*<strong>* *</strong>*管理员管理会员的协作图****</h2><p>管理员管理会员的协作图如图 4.4 所示。</p>
-<p><img src="file:////private/var/folders/gw/kv91g3zn7jg0xyv433_1zjrc0000gn/T/com.kingsoft.wpsoffice.mac/wps-coleqin/ksohtml/wps4lJR4M.jpg" alt="img"> </p>
-<p>图4.4管理会员协作</p>
 
           
         
